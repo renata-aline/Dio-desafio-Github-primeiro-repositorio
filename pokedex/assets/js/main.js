@@ -2,8 +2,15 @@
 // const limit = 10;
 // const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
 
-function convertPokemonToLi(pokemon) {
-    return `<li class="pokemon ${pokemon.type}">
+const pokemonList = document.getElementById('pokemonList')
+const loadMoreButton = document.getElementById('loadMoreButton')
+const limit = 5
+let offset = 0
+
+function loadPokemonItens(offset, limit) {
+    pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
+        const newHtml = pokemons.map((pokemon)=>
+    `<li class="pokemon ${pokemon.type}">
         <span class="number">#${pokemon.number}</span>
         <span class="name">${pokemon.name}</span>
 
@@ -13,27 +20,20 @@ function convertPokemonToLi(pokemon) {
             </ol>
             <img src="${pokemon.photo}" alt="${pokemon.name}">
         </div>
-    </li>`
+    </li>
+    `).join('')
+    
+    
+        pokemonList.innerHTML += newHtml
+    })
 }
 
-const pokemonList = document.getElementById('pokemonList')
+loadPokemonItens(offset, limit)
 
-pokeApi.getPokemons().then((pokemons = []) => {
-    const newHTML = pokemons.map(convertPokemonToLi).join('')
-    pokemonList.innerHTML = newHTML
+loadMoreButton.addEventListener('click', () => {
+    offset += limit
+    loadPokemonItens(offset, limit)
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*const listItems = [];
  

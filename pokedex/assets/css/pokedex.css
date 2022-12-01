@@ -46,6 +46,26 @@
     background-color: #725847;
 }
 
+.pokemon.bug {
+    background-color: #bac850;
+}
+
+.pokemon.fairy {
+    background-color: #4c2814;
+}
+
+.pokemon.rock {
+    background-color: #725847c6;
+}
+
+.pokemon.dragon {
+    background-color: #df6983f9;
+}
+
+.pokemon.ghost {
+    background-color: rgba(43, 113, 226, 0.333);
+}
+
 .pokemons {
     display: grid;
     grid-template-columns: 1fr;
